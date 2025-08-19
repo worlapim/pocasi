@@ -1,0 +1,52 @@
+﻿@using Pocasi.Models
+@model SearchViewModel
+@using Pocasi.Properties
+@{
+    ViewData["Title"] = "Home Page";
+    var isLocationDisplayed = Model.Root != null;
+}
+
+<div class="search-box@(isLocationDisplayed ? "" : " search-box_big")">
+    <div class="@(isLocationDisplayed ? "" : "title_big")">
+        <h1>@Resources.AppName</h1>
+    </div>
+    <label>
+        @Resources.Location:
+        <input name=locations list=locations
+                onchange="SearchChanged()"
+                value="@Model.Location"
+                id="location-input"
+               class="search-input@(isLocationDisplayed ? "" : " search-input_big")">
+        <datalist id="locations">
+            @{
+                foreach(var location in Model?.Locations??new List<string>())
+                {
+                    <option value="@location"/>
+                }
+            }
+        </datalist>
+    </label>
+</div>
+<div class="table-container">
+    <table class="table">
+        @{
+                var length = Model?.Root?.List.Count() ?? 0;
+                var now = DateTime.Now;
+                for (var i = 0; i < length; i++)
+            {
+                <tr class="table-row">
+                    <th class="table-cell">@now.AddHours(3 * i)</th>
+                    <th class="table-cell">@(Model?.Root?.List[i]?.Main?.Temp)°C</th>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+
+<script>
+    function SearchChanged()
+    {
+        window.location.href = "./home?search=" + document.getElementById("location-input").value;
+    }
+</script>
