@@ -30,12 +30,12 @@
 <div class="table-container">
     <table class="table">
         @{
-                var length = Model?.Root?.List.Count() ?? 0;
-                var now = DateTime.Now;
-                for (var i = 0; i < length; i++)
+            var tableLength = Model?.Root?.List.Count() ?? 0;
+            var now = DateTime.Now;
+            for (var i = 0; i < tableLength; i++)
             {
                 <tr class="table-row">
-                    <th class="table-cell">@now.AddHours(3 * i)</th>
+                    <th class="table-cell" style="width:30%; text-align: right;"><time id="@($"time{i}")"></time></th>
                     <th class="table-cell">@(Model?.Root?.List[i]?.Main?.Temp)°C</th>
                 </tr>
             }
@@ -48,5 +48,41 @@
     function SearchChanged()
     {
         window.location.href = "./home?search=" + document.getElementById("location-input").value;
+    }
+
+
+    Date.prototype.addHours = function(h) {
+        const oldDay = this.getDate();
+        this.setTime(this.getTime() + (h*60*60*1000));
+        const newDay = this.getDate();
+        return oldDay != newDay;
+    }
+
+    const time = new Date();
+    time.addHours(-3);
+    @{
+        for (var i = 0; i < tableLength; i++)
+        {
+            <text>
+                newDay = time.addHours(3) || @(i) == 0;
+                element = document.getElementById("@($"time{i}")");
+                console.log(newDay);
+                if (newDay){
+                    console.log(newDay);
+                    txt = document.createTextNode(time.toLocaleDateString(undefined, {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit" }));
+                }
+                else{
+                    txt = document.createTextNode(time.toLocaleTimeString(undefined, {
+                                hour: "2-digit",
+                                minute: "2-digit" }));
+                }
+                element.appendChild(txt);
+            </text>
+        }
     }
 </script>
