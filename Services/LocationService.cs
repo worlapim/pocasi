@@ -13,8 +13,6 @@ namespace Pocasi.Services
                 List<City>? items = JsonConvert.DeserializeObject<List<City>>(json);
                 return items;
             }
-
-            //var contents = File.ReadAllLines(@".\Data\Locations.txt");
         }
     }
 }

@@ -7,6 +7,7 @@
     <UserSecretsId>aed05653-2d1d-4f9f-99ce-2934f3483849</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <NeutralLanguage>cs</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,7 +2,6 @@
 @model SearchViewModel
 @using Pocasi.Properties
 @{
-    ViewData["Title"] = "Home Page";
     var tableLength = Model?.WeatherDisplayItems.Count() ?? 0;
     var isLocationDisplayed = tableLength != 0;
 }
