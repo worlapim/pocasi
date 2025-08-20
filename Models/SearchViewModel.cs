@@ -4,6 +4,6 @@
     {
         public string Location { get; set; } = "";
         public List<string>? Locations { get; set; } = [];
-        public OpenWeatherApi.Root? Root { get; set; } = null;
+        public List<WeatherDisplayItem> WeatherDisplayItems { get; set; } = new List<WeatherDisplayItem>();
     }
 }

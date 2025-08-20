@@ -25,8 +25,8 @@ namespace pocasi.Controllers
             SearchViewModel searchViewModel = new SearchViewModel 
             { 
                 Location = search,
-                Locations = locations?.Select(c => c.Name).ToList(),
-                Root = searchedLocation != null ? _weatherService.GetWeather(searchedLocation.Coord) : null,
+                Locations = locations?.Select(c => c.Name).Distinct().ToList(),
+                WeatherDisplayItems = _weatherService.GetWeather(searchedLocation?.Coord),
             };
             return View(searchViewModel);
         }

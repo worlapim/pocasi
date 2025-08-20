@@ -38,6 +38,17 @@ namespace Pocasi.Models.OpenWeatherApi
         [JsonProperty("dt_txt")]
         public string DtTxt { get; set; } = "";
         public Rain Rain { get; set; } = new Rain();
+
+
+        public static explicit operator WeatherDisplayItem(List obj)
+        {
+            WeatherDisplayItem output = new WeatherDisplayItem() 
+            {
+                Date = obj.Dt,
+                Temperatue = obj.Main.Temp,
+            };
+            return output;
+        }
     }
 
     public class Main
