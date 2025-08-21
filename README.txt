@@ -7,3 +7,6 @@ Aplikace byla testována v těchto prohlížečích
  - Firefox
  - Brave
  - Avast Secure Browser
+
+ V třídě Constants je použit můj soukromý klíč z WeatherAPI k mému zdarma účtu, který jsem dal deaktivovat. 
+ Pro zprovoznění si založte vlastní účet (klidně zdarma) a svůj vygenerovaný klíč vložte do konstanty OPEN_WEATHER_API_KEY.
